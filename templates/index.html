@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ValueCart - Find the Best Value</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            <span class="logo-value">Value</span><span class="logo-cart">Cart</span>
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <main class="hero">
+
+        <div class="hero-content">
+
+            <p class="badge">
+                🛒 SMART PRICE COMPARISON
+            </p>
+
+
+            <h1>
+                Find the
+                <span>Best Value</span>
+                Before You Buy.
+            </h1>
+
+
+            <p class="description">
+                Compare product prices across multiple shopping
+                platforms and discover the best deal in seconds.
+            </p>
+
+
+            <!-- SEARCH BOX -->
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="productUrl"
+                    placeholder="Paste product link here..."
+                >
+
+                <button onclick="compareProduct()">
+                    Compare Prices
+                </button>
+
+            </div>
+
+
+            <p class="supported">
+                Compare prices across supported shopping platforms
+            </p>
+
+
+            <!-- RESULTS -->
+
+            <section id="results" class="results hidden">
+
+                <div class="results-header">
+
+                    <div>
+
+                        <p class="result-label">
+                            PRICE COMPARISON
+                        </p>
+
+                        <h2 id="resultTitle">
+                            Product Results
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BEST DEAL -->
+
+                <div id="bestDeal" class="best-deal">
+
+                    <div class="best-badge">
+                        🏆 BEST VALUE
+                    </div>
+
+
+                    <div class="best-info">
+
+                        <span id="bestPlatform">
+                            Platform
+                        </span>
+
+                        <strong id="bestPrice">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <div id="saving" class="saving">
+                        Best available price
+                    </div>
+
+                </div>
+
+
+                <!-- PRICE LIST -->
+
+                <div id="priceList" class="price-list">
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+
+</html>
