@@ -6,6 +6,10 @@ from platforms.tatacliq import TataCliqPlatform
 
 
 class SearchManager:
+    """
+    Central manager responsible for searching
+    a product across all supported platforms.
+    """
 
     def __init__(self):
         self.platforms = [
@@ -17,6 +21,12 @@ class SearchManager:
         ]
 
     def search_all(self, product_name):
+        """
+        Search for a product across every platform.
+
+        Returns:
+            list: Product results from all platforms.
+        """
 
         results = []
 
@@ -25,12 +35,36 @@ class SearchManager:
             try:
                 result = platform.search_product(product_name)
 
-                # Ensure common result format
-                result.setdefault("platform", platform.__class__.__name__)
-                result.setdefault("name", product_name)
-                result.setdefault("price", None)
-                result.setdefault("url", "")
-                result.setdefault("status", "unknown")
+                if not result:
+                    result = self._create_empty_result(
+                        platform,
+                        product_name
+                    )
+
+                result.setdefault(
+                    "platform",
+                    platform.__class__.__name__
+                )
+
+                result.setdefault(
+                    "name",
+                    product_name
+                )
+
+                result.setdefault(
+                    "price",
+                    None
+                )
+
+                result.setdefault(
+                    "url",
+                    ""
+                )
+
+                result.setdefault(
+                    "status",
+                    "unknown"
+                )
 
                 results.append(result)
 
@@ -46,3 +80,18 @@ class SearchManager:
                 })
 
         return results
+
+    @staticmethod
+    def _create_empty_result(platform, product_name):
+        """
+        Create a standard empty result when
+        a platform returns no product.
+        """
+
+        return {
+            "platform": platform.__class__.__name__,
+            "name": product_name,
+            "price": None,
+            "url": "",
+            "status": "not_found"
+        }
